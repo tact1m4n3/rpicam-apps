@@ -21,7 +21,7 @@ public:
 	~H264Encoder();
 	// Encode the given DMABUF.
 	void EncodeBuffer(int fd, size_t size, void *mem, StreamInfo const &info, int64_t timestamp_us) override;
-
+	void SetBitrate(Bitrate bitrate) override;
 private:
 	// We want at least as many output buffers as there are in the camera queue
 	// (we always want to be able to queue them when they arrive). Make loads

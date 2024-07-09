@@ -32,7 +32,7 @@ public:
 	// Encode the given buffer. The buffer is specified both by an fd and size
 	// describing a DMABUF, and by a mmapped userland pointer.
 	virtual void EncodeBuffer(int fd, size_t size, void *mem, StreamInfo const &info, int64_t timestamp_us) = 0;
-
+	virtual void SetBitrate(Bitrate bitrate) {} 
 protected:
 	InputDoneCallback input_done_callback_;
 	OutputReadyCallback output_ready_callback_;

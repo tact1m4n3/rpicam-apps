@@ -17,6 +17,7 @@ struct Bitrate
 {
 public:
 	Bitrate() : bps_(0) {}
+	Bitrate(uint64_t bps) : bps_(bps) {}
 
 	void set(const std::string &s)
 	{

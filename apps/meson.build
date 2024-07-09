@@ -10,6 +10,12 @@ rpicam_vid = executable('rpicam-vid', files('rpicam_vid.cpp'),
                         link_with : rpicam_app,
                         install : true)
 
+rpicam_zlv_stream = executable('rpicam-zlv-stream', files('rpicam_zlv_stream.cpp'),
+                        include_directories : include_directories('..'),
+                        dependencies: [libcamera_dep, boost_dep],
+                        link_with : rpicam_app,
+                        install : true)
+
 rpicam_hello = executable('rpicam-hello', files('rpicam_hello.cpp'),
                           include_directories : include_directories('..'),
                           dependencies: libcamera_dep,
@@ -47,7 +53,7 @@ install_symlink('libcamera-raw',
 
 install_symlink('libcamera-jpeg',
                 install_dir: get_option('bindir'),
-                pointing_to: 'rpicam-jpeg')    
+                pointing_to: 'rpicam-jpeg')
 
 if enable_tflite
     rpicam_detect = executable('rpicam-detect', files('rpicam_detect.cpp'),

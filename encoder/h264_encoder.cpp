@@ -272,6 +272,14 @@ void H264Encoder::EncodeBuffer(int fd, size_t size, void *mem, StreamInfo const 
 		throw std::runtime_error("failed to queue input to codec");
 }
 
+void H264Encoder::SetBitrate(Bitrate bitrate) {
+	v4l2_control ctrl = {};
+	ctrl.id = V4L2_CID_MPEG_VIDEO_BITRATE;
+	ctrl.value = bitrate.bps();
+	if (xioctl(fd_, VIDIOC_S_CTRL, &ctrl) < 0)
+		throw std::runtime_error("failed to set bitrate");
+}
+
 void H264Encoder::pollThread()
 {
 	while (true)
